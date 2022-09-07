@@ -41,17 +41,12 @@ min_left = 0
 i_left = 0
 
 
-
-
-
 # Create the node
 cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1) # to move the robot
 scan_sub = rospy.Subscriber('scan', LaserScan, scan_callback)   # to read the laser scanner
 rospy.init_node('maze_explorer')
 
 
-
-#============ FERHAT ================
 
 RADIUS=3.24
 def odometryCb(msg):
@@ -80,7 +75,7 @@ def checkZone():
 #rospy.init_node('oodometry', anonymous=True) #make node 
 rospy.Subscriber('odom',Odometry,odometryCb)
 
-#====================================
+
 command = Twist()
 command.linear.x = 0.0
 command.angular.z = 0.0
@@ -100,13 +95,8 @@ time.sleep(2)
        
 while not rospy.is_shutdown():
     print("min front:", min_front)
-    # The algorithm:
-    # 1. Robot moves forward to be close to a wall
-    # 2. Start following left wall.
-    # 3. If too close to the left wall, reverse a bit to get away
-    # 4. Otherwise, follow wall by zig-zagging along the wall
-    # 5. If front is close to a wall, turn until clear
-    while(near_wall == 0 and not rospy.is_shutdown()): #1
+
+    while(near_wall == 0 and not rospy.is_shutdown()): 
         print("Moving towards a wall.", x2, "  ", y2)
         checkZone()
         print("min front:", min_front)
