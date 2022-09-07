@@ -41,17 +41,12 @@ min_left = 0
 i_left = 0
 
 
-
-
-
 # Create the node
 cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size = 1) # to move the robot
 scan_sub = rospy.Subscriber('scan', LaserScan, scan_callback)   # to read the laser scanner
 rospy.init_node('maze_explorer')
 
 
-
-#============ FERHAT ================
 
 RADIUS=4
 def odometryCb(msg):
@@ -77,7 +72,7 @@ def checkZone():
 #rospy.init_node('oodometry', anonymous=True) #make node 
 rospy.Subscriber('odom',Odometry,odometryCb)
 
-#====================================
+
 command = Twist()
 command.linear.x = 0.0
 command.angular.z = 0.0
